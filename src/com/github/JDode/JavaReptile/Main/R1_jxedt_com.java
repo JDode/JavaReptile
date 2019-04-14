@@ -96,7 +96,7 @@ public class R1_jxedt_com {
 
 		}
 		ConsoleLog.info("程序爬取完成!成功爬取:" + num + "记录!花费时间为" + (System.currentTimeMillis() - starTime) + "ms");
-		new JDBCUtil();
+		//new JDBCUtil();
 		// 数据爬取并且存储完成关闭数据库连接
 		JDBCUtil.closeConnection(connection);
 
