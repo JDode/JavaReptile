@@ -37,7 +37,7 @@ public class R1_jxedt_com {
 		 * 就测试了一遍能正常爬取，如果发现有bug自己改吧
 		 */
 
-		new R1_jxedt_com().ReptileService(1, 1334);
+		new R1_jxedt_com().ReptileService(1, 3933);
 
 	}
 
@@ -75,9 +75,17 @@ public class R1_jxedt_com {
 			if ((!t.getImageurl().equals(""))) {
 				// http://img.58cdn.com.cn/dist/jxedt/app/static/img/kaoshi_p/5eb4d75agw1e28yntci5ej.jpg
 				String[] urls = t.getImageurl().split("\\.");
-				System.out.println(Arrays.toString(urls));
-				String imageUrl = "http://img.58cdn.com.cn/dist/jxedt/app/static/img/kaoshi_p/" + urls[0] + ".jpg";
-				FileUtils.copyURLToFile(new URL(imageUrl), new File("src/images/" + urls[0] + ".jpg"));
+				ConsoleLog.info(Arrays.toString(urls));
+				//是视频就下载视频
+				if (urls[1].equals("mp4")) {
+					String imageUrl = "http://img.58cdn.com.cn/dist/jxedt/app/static/img/kaoshi_p/" + urls[0] + ".mp4";
+					FileUtils.copyURLToFile(new URL(imageUrl), new File("src/images/" + urls[0] + ".mp4"));
+				}
+				//是图片文件就下载图片
+				if (urls[1].equals("webp")) {
+					String imageUrl = "http://img.58cdn.com.cn/dist/jxedt/app/static/img/kaoshi_p/" + urls[0] + ".jpg";
+					FileUtils.copyURLToFile(new URL(imageUrl), new File("src/images/" + urls[0] + ".jpg"));
+				}
 			}
 			// 创建SQL
 			String sql = String.format(
